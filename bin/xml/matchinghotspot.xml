@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<data>
+	<settings>
+		<questiontype>matching</questiontype>
+		<attemps>2</attemps>
+		<randomizechoices>true</randomizechoices>
+		<randomizematches>true</randomizematches>
+	</settings>
+
+	<title><![CDATA[Knowledge Check]]></title>
+	<text><![CDATA[Aenean ut turpis nec dolor fringilla rutrum vel ac dui. Nulla facilisi. Integer dolor nisl, hendrerit quis pharetra elementum.]]></text>
+	<cta><![CDATA[Drag the terms on the left to their matches on the right, and then click Submit to check your response.]]></cta>
+	
+	<ca><![CDATA[Correct feedback]]></ca>
+	<wa><![CDATA[Try again!]]></wa>
+	<wa2><![CDATA[Sorry, that's incorrect. The correct answer is.]]></wa2>
+	
+	<!-- 
+	Note: 
+	The size of the hot spots will adjust to be at minimum the width and height of the largest choice
+	Choices will auto center on the hotspots
+	 -->
+	
+	<sheet>
+		<graphic id="graphic1" guid="">
+			<position>275,150</position>
+			<size>250,250</size>
+			<url>media/testimage.jpg</url>
+		</graphic >
+	</sheet>
+	
+	<choice id="choice1">
+		<text><![CDATA[Choice 1]]></text>
+		<match><![CDATA[Match 1 Match 1 Match 1 Match 1 Match 1 Match 1 Match 1 Match 1 Match 1 Match 1 Match 1 Match 1 Match 1]]></match>
+		<hotspot>
+			<position>300,150</position>
+			<size>100,100</size>
+		</hotspot>
+	</choice>
+	<choice id="choice2">
+		<text><![CDATA[Choice 2]]></text>
+		<match><![CDATA[Match 2 Match 2 Match 2 Match 2 Match 2 Match 2 Match 2]]></match>
+		<hotspot>
+			<position>550,150</position>
+			<size>100,100</size>
+		</hotspot>
+	</choice>
+	<choice id="choice3">
+		<text><![CDATA[Choice 3Choice 3Choice 3Choice 3Choice 3Choice 3Choice3]]></text>
+		<match><![CDATA[Match 3 Match 3 Match 3 Match 3 Match 3 Match 3 Match 3 Match ]]></match>
+		<hotspot>
+			<position>300,260</position>
+			<size>100,100</size>
+		</hotspot>
+	</choice>
+	<choice id="choice4">
+		<text><![CDATA[Choice 4]]></text>
+		<match><![CDATA[Match 4 Match 4 Match 4 Match 4 Match 4 ]]></match>
+		<hotspot>
+			<position>550,260</position>
+			<size>100,100</size>
+		</hotspot>
+	</choice>
+
+</data>

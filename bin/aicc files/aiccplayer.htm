@@ -1,0 +1,180 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+
+<script type="text/javascript" src="external.js" language="javascript"></script>
+<script type="text/javascript" src="APIWrapper.js" language="javascript"></script>
+<script type="text/javascript" language="JavaScript">
+<!--
+
+document.onhelp = function () {return false;};
+document.onsearch = function () {return false;};
+
+window.onerror = errorFunc
+
+function errorFunc(msg, url, ln) {
+	var t = "A fatal error has occured. You should exit the training now and reenter.\nIf you fail to do this, your progress and score may not be recorded.\n\nIf you continue to receive this error, please call the help desk."
+	var d = "\n\n------------------------------------------------------------------------------------\n\nError details:\n\nMessage: "+msg+"\nFile: "+url+"\nLine: "+ln
+	alert(t+d)
+	return true
+}
+
+function focusObject()
+{
+	document.getElementById("quiz").focus();
+}
+
+var DebugMessages = false
+
+// If the number of FScommand calls exceeds the Max then a doLMSCommit is called
+var ActivityCntr = 0
+// set this to 0 to disable this feature
+var ActCommitMax = 10
+
+// Hook for Internet Explorer
+if (navigator.appName && navigator.appName.indexOf("Microsoft") != -1 && navigator.userAgent.indexOf("Windows") != -1 && navigator.userAgent.indexOf("Windows 3.1") == -1) {
+	document.write('<script language=\"VBScript\"\>\n');
+	document.write('On Error Resume Next\n');
+	document.write('Sub quiz_FSCommand(ByVal command, ByVal args)\n');
+	document.write('	Call quiz_DoFSCommand(command, args)\n');
+	document.write('End Sub\n');
+	document.write('</script\>\n');
+}
+
+/*function getValueFromLMS(cmivar) {
+	document.getElementById("quiz").SetVariable("LMSDataHolder", doLMSGetValue(cmivar))
+}*/
+
+function getValueFromLMS(cmivar, flvar) {
+	if(cmivar == "hacpurl") {
+		//alert("Req opener url to flvar:'"+flvar+"' :\n\n"+window.opener.document.location)
+		document.getElementById("quiz").SetVariable(flvar, window.opener.document.location)
+	} else {
+		document.getElementById("quiz").SetVariable(flvar, doLMSGetValue(cmivar))
+		//alert("CMI: "+cmivar+" to F: "+flvar+"\n\n"+doLMSGetValue(cmivar))
+	}
+}
+
+function isAPIAvailable() {
+	document.getElementById("quiz").SetVariable("isAPIInitialized", getAPIAvailable())
+}
+
+function getAPIAvailable() {
+   var api = getAPIHandle()
+   if (api == null) return "false"
+   return "true"
+}
+
+function quiz_DoFSCommand(command, args){
+	var cmd = new String(command)
+	var the_args = new String(args)
+	var F_intData = the_args.split("~")
+	var err = "true"
+	//alert("fs command: "+command)
+	if(cmd.substring(0,6) == "CMISet") {
+		if (cmd=="CMISetScore"){
+			err = doLMSSetValue("cmi.core.score.raw", F_intData[0]);
+		} else if ((cmd=="CMISetStatus") || (cmd=="MM_cmiSetLessonStatus")){
+			err = doLMSSetValue("cmi.core.lesson_status", normalizeStatus(F_intData[0]))
+		} else if (cmd=="CMISetTime"){
+			err = doLMSSetValue("cmi.core.session_time", F_intData[0])
+		} else if (cmd=="CMISetStarted"){
+			err = doLMSSetValue("cmi.core.lesson_status", "incomplete")
+		} else if (cmd=="CMISetFinished"){
+			err = doLMSSetValue("cmi.core.lesson_status", "completed")
+		} else if (cmd=="CMISetPassed"){
+			err = doLMSSetValue("cmi.core.lesson_status", "passed")
+		} else if (cmd=="CMISetFailed"){
+			err = doLMSSetValue("cmi.core.lesson_status", "failed")
+		} else if (cmd=="CMISetData"){
+			err = doLMSSetValue("cmi.suspend_data", F_intData[0])
+			//alert("saved suspend data ("+err+"), num: "+ActivityCntr+"\n\n"+F_intData[0])
+		} else if (cmd=="CMISetLocation"){
+			err = doLMSSetValue("cmi.core.lesson_location", F_intData[0])
+		} else if (cmd=="CMISetTimedOut"){
+			err = doLMSSetValue("cmi.core.exit", "time-out")
+		}
+	} else {
+		if (cmd=="CMICommit") {
+			err = doLMSCommit()
+		} else if (cmd=="CMIFinish"){
+			err = doLMSFinish()
+			if(err == "true" && DebugMessages) alert("SCO was set as finished.")
+		} else if (cmd=="CMIInitialize"){
+			err = doLMSInitialize()
+		} else if (cmd=="isAPIAvailable") {
+			isAPIAvailable()
+		} else if (cmd=="CMIGetValue") {
+			getValueFromLMS(F_intData[0],"LMSDataHolder")
+		} else if (cmd=="CMIGetValueQueue") {
+			//alert("sending to getValueFromLMS")
+			getValueFromLMS(F_intData[0],F_intData[1])
+		} else if (cmd=="CloseWindows"){
+			window.onerror = null
+			window.opener.closefunc()
+			self.close()
+		} else if (cmd=="trapallkeys") {
+			// nothing
+		} else {
+			alert("Unrecognized command\n\n"+cmd)
+		}
+	}
+	if(err != "true") {
+		alert("LMS Communication Error Occured:\n\nerr: "+err+"\n\ncmd: "+cmd+"\nargs: "+the_args)
+	} else {
+		if(DebugMessages) window.status = "c: "+cmd+" ( "+the_args+" ) = "+err
+		if(++ActivityCntr > ActCommitMax && ActCommitMax>1) {
+			ActivityCntr = 0
+			doLMSCommit()
+		}
+	}
+}
+
+// Functions to convert AICC compatible tokens or abbreviations to SCORM tokens
+function AICCTokenToSCORMToken(strList,strTest){
+	var a = strList.split(",");
+	var c = strTest.substr(0,1).toLowerCase();
+	for (i=0;i<a.length;i++){
+			if (c == a[i].substr(0,1)) return a[i]
+	}
+	return strTest
+}
+
+function normalizeStatus(status){
+	return AICCTokenToSCORMToken("completed,incomplete,not attempted,failed,passed", status)
+}
+
+function normalizeInteractionType(theType){
+	return AICCTokenToSCORMToken("true-false,choice,fill-in,matching,performance,sequencing,likert,numeric", theType)
+}
+
+function normalizeInteractionResult(result){
+	return AICCTokenToSCORMToken("correct,wrong,unanticipated,neutral", result)
+}
+
+function exitCourse() {
+	window.opener.closefunc()
+	self.close()
+}
+
+
+//-->
+</script>
+
+<title>Course Window</title>
+<style type="text/css">
+<!--
+body {
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+}
+-->
+</style></head>
+<body bgcolor="#ffffff">
+<!--<object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" codebase="https://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=7,0,14,0" id="quiz" width="1014" height="692" align="middle"><param name="allowScriptAccess" value="sameDomain" /><param name="movie" value="loader.swf" /><param name="quality" value="high" /><param name="bgcolor" value="#ffffff" /><embed src="loader.swf" id="quiz" quality="high" bgcolor="#ffffff" width="1014" height="692" name="quiz" align="middle" allowscriptaccess="sameDomain" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" /></embed></object>-->
+<script>addQuiz()</script>
+</body>
+</html>

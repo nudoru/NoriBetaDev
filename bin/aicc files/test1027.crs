@@ -1,0 +1,27 @@
+
+; ----------------------------------------
+;
+; AICC Course Interchange File.
+;
+;
+; ----------------------------------------
+
+[Course]
+Course_ID=TEST1027
+Course_Title=Flash XML Engine 3 AICC
+Level=1
+Course_Creator=Wachovia
+Course_System=Flash
+Total_AUs=1
+Total_Blocks=0
+Total_Objectives=0
+Total_Complex_Obj=0
+Max_Fields_CST=2
+Max_Fields_ORT=0
+Version=2.0
+
+[Course_Behavior]
+Max_Normal=99
+
+[Course_Description]
+Flash XML Engine 3 AICC

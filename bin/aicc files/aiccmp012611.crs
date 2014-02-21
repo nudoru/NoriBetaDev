@@ -1,0 +1,27 @@
+
+; ----------------------------------------
+;
+; AICC Course Interchange File.
+;
+;
+; ----------------------------------------
+
+[Course]
+Course_ID=aiccmp012611
+Course_Title=Nori AICC Testing
+Level=1
+Course_Creator=Matt Perkins
+Course_System=Flash
+Total_AUs=1
+Total_Blocks=0
+Total_Objectives=0
+Total_Complex_Obj=0
+Max_Fields_CST=2
+Max_Fields_ORT=0
+Version=3.5
+
+[Course_Behavior]
+Max_Normal=99
+
+[Course_Description]
+Nori AICC Testing

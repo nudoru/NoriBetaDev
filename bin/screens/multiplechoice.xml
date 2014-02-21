@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<data>
+	<settings>
+		<questiontype>choice</questiontype>
+		<attemps>2</attemps>
+		<randomizechoices>true</randomizechoices>
+	</settings>
+	
+	<title><![CDATA[Knowledge Check]]></title>
+	<text><![CDATA[Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla non arcu in mi euismod vestibulum in elementum massa. Mauris ornare tincidunt tellus id sodales. Nulla facilisi. Vestibulum eleifend rutrum mauris vel iaculis. Donec iaculis, lacus vel euismod vehicula, nulla diam faucibus nulla, vitae pharetra orci dui vel eros. Nulla in lacinia turpis. ]]></text>
+	<cta><![CDATA[Select a single response, and then click Submit to check your response.]]></cta>
+
+	<ca><![CDATA[Correct feedback]]></ca>
+	<wa><![CDATA[Try again!]]></wa>
+	<wa2><![CDATA[Sorry, that's incorrect. The correct answer is.]]></wa2>
+	
+	<choice id="choice1">
+		<text><![CDATA[This is choice 1]]></text>
+		<correct>true</correct>
+		<feedback><![CDATA[]]></feedback>
+	</choice>
+	
+	<choice id="choice2">
+		<text><![CDATA[This is choice 2]]></text>
+		<correct>false</correct>
+		<feedback><![CDATA[]]></feedback>
+	</choice>
+	
+	<choice id="choice3">
+		<text><![CDATA[This is choice 3]]></text>
+		<correct>true</correct>
+		<feedback><![CDATA[]]></feedback>
+	</choice>
+	
+	<choice id="choice4">
+		<text><![CDATA[This is choice 4]]></text>
+		<correct>false</correct>
+		<feedback><![CDATA[]]></feedback>
+	</choice>
+</data>

@@ -1,0 +1,20 @@
+[Course]
+  Course_Creator = Wachovia
+  Course_ID = AICC1171
+  Course_System = Authorware 5.1
+  Course_Title = Managing and Leading at Wachovia
+  Level = 3
+  Max_Fields_CST = 6
+  Total_AUs = 5
+  Total_Blocks = 1
+  Total_Objectives = 0
+  Total_Complex_Obj = 0
+  Version = 1.0
+
+[Course_Behavior]
+  Max_Normal = 99
+
+[Course_Description]
+
+None
+

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<data>
+	<settings>
+		<questiontype>matching</questiontype>
+		<attemps>2</attemps>
+		<randomizechoices>true</randomizechoices>
+		<randomizematches>true</randomizematches>
+	</settings>
+
+	<title><![CDATA[Knowledge Check]]></title>
+	<!--<prompt><![CDATA[Aenean ut turpis nec dolor fringilla rutrum vel ac dui. Nulla facilisi. Integer dolor nisl, hendrerit quis pharetra elementum.]]></prompt>-->
+	<cta><![CDATA[Drag the terms on the left to their matches on the right, and then click Submit to check your response.]]></cta>
+	
+	<ca><![CDATA[Correct feedback]]></ca>
+	<wa><![CDATA[Try again!]]></wa>
+	<wa2><![CDATA[Sorry, that's incorrect. The correct answer is.]]></wa2>
+	
+	<choice id="choice1">
+		<text><![CDATA[Choice 1]]></text>
+		<match><![CDATA[These are the ODD matches]]></match>
+	</choice>
+	<choice id="choice2">
+		<text><![CDATA[Choice 2]]></text>
+		<match><![CDATA[Even]]></match>
+	</choice>
+	<choice id="choice3">
+		<text><![CDATA[Choice 3Choice 3Choice 3Choice 3Choice 3Choice 3Choice 3Choice 3Choice 3Choice 3Choice 3Choice 3]]></text>
+		<match><![CDATA[These are the ODD matches]]></match>
+	</choice>
+	<choice id="choice4">
+		<text><![CDATA[Choice 4]]></text>
+		<match><![CDATA[Even]]></match>
+	</choice>
+</data>

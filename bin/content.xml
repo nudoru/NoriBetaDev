@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<data>
+	
+	<settings>
+		<!-- will appear at the top of the ui -->
+		<name>Scientia Player (nori flavor)</name>
+		<!-- metadata -->
+		<author>Matt Perkins</author>
+		<lastmodified>01012011</lastmodified>
+
+		<!-- use sounds? -->
+		<audioenabled>true</audioenabled>
+		
+		<!-- does this site need additional content? what's the file name -->
+		<contenturl>content.xml</contenturl>
+		<!-- use SWFAddress for tracking -->
+		<useswfaddress>true</useswfaddress>
+		<!-- store user data locally -->
+		<uselso>false</uselso>
+		<!-- clear the cookie for testing -->
+		<clearlso>false</clearlso>
+		
+		<lms>
+			<!-- scorm12, scorm2004, aicc -->
+			<mode></mode>
+			<!-- all_screens, score_screens -->
+			<!-- to be implemented: first_screen, last_screen  -->
+			<completioncriteria>score_screens</completioncriteria>
+			<!-- allow a failing course status to be send to the LMS -->
+			<allowfailingstatus>false</allowfailingstatus>
+			<passingscore>80</passingscore>
+		</lms>
+		
+		<theme>
+			<!-- scale the UI as the user resizes the browser window -->
+			<scaleui>false</scaleui>
+			<assets>assets.swf</assets>
+			<highlightcolor>0x006699</highlightcolor>
+			<colors>0xdddddd,0x006699,0x009966</colors>
+			<!-- these fonts must be embedded in the assets SWF file and exported for AS with the linkage names below -->
+			<fonts>Verdana,VerdanaItalic,VerdanaBold,VerdanaBoldItalic,MyriadPro,MyriadProBold,FranklinGothicBook,FranklinGothicMedium,NewsGothicStd,NewsGothicStdOblique,NewsGothicStdBold,NewsGothicStdBoldOblique</fonts>
+		</theme>
+		
+	</settings>
+	
+	<structure id="structure1">
+		<module id="module1" name="Module 1">
+			<screen id="screen1" name="Screen 1" type="screen" path="screens/blank.swf" url="xml/blankscreen.xml" />
+			
+			<screen id="screenmc" name="Screen MC" type="screen" path="screens/multiplechoice.swf" url="xml/multiplechoice.xml" scored="false"/>
+			
+			<screen id="matchingtext" name="Matching Text" type="screen" path="screens/matchingtext.swf" url="xml/matchingtext.xml" scored="false"/>
+			<screen id="orderinghoriz" name="Ordering Horizontal" type="screen" path="screens/orderinghorizontal.swf" url="xml/orderinghorizontal.xml" scored="false"/>
+			<screen id="orderingvert" name="Ordering Vertical" type="screen" path="screens/orderingvertical.swf" url="xml/orderingvertical.xml" scored="false"/>
+			<screen id="matchinghs" name="Matching Hotspots" type="screen" path="screens/matchinghotspot.swf" url="xml/matchinghotspot.xml" scored="false"/>
+			<screen id="sortingtext" name="Sorting Text" type="screen" path="screens/sortingtext.swf" url="xml/sortingtext.xml" scored="false"/>
+			
+			<screen id="screendot" name="Screen Dots" type="screen" path="screens/matchingdot.swf" url="xml/matchingdot.xml" scored="false"/>
+			
+			
+			<screen id="screen2" name="Screen 2" type="screen" path="screens/blank.swf" url="xml/blankscreen2.xml" />
+			<screen id="screen3" name="Screen 3" type="screen" path="screens/blank.swf" url="xml/blankscreen3.xml" />
+		</module>
+	</structure>
+
+</data>
